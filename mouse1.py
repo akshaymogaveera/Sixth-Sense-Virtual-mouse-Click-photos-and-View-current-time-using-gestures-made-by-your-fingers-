@@ -2,12 +2,12 @@ import cv2
 import numpy as np
 from datetime import datetime
 from pynput.mouse import Button, Controller
-import wx
+#import wx   #No need to import this library if you already know the dimensions of your display
 mouse=Controller()
 
 #app=wx.App(False)
 #(sx,sy)=wx.GetDisplaySize()
-sx,sy=1366,768
+sx,sy=1366,768    #enter the dimensions of your screen
 #(camx,camy)=(320,240)
 (camx,camy)=(480, 640)
 
@@ -80,15 +80,15 @@ while True:
     cg=cv2.countNonZero(mask)
     maskb = cv2.inRange(imgHSV, lowblue,highblue)
     cb=cv2.countNonZero(maskb)
-    print 'cb',cb
+    print 'Blue Pixels :',cb #change the threshold on these values
 
-    if cb>500:
+    if cb>500: #threshold of blue pixels
         from datetime import datetime
         a=datetime.time(datetime.now())
         a=str(a)
         t=a.split(':')
         t=t[:2]
-        t[0]=str(int(t[0])-12)
+        t[0]=str(abs(int(t[0])-12))
     
         
         maskOpen1=cv2.morphologyEx(maskb,cv2.MORPH_OPEN,kernelOpen)
@@ -172,7 +172,7 @@ while True:
         mLocOld=mouseLoc
     elif(len(conts)==4):
         print cg
-        if cpm==0 and cg>5000:
+        if cpm==0 and cg>5000:         #threshold of pixels
             trans(img,maskFinal,cptotal)
             cpm=1
        
