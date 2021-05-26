@@ -1,4 +1,4 @@
-# **Sixth Sense**
+# **Gesture-based wearable computer system using Image processing**
 
 1. Use Green colored stickers at the tip of your four fingers to operate.
 
